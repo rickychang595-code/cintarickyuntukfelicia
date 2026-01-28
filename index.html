@@ -79,22 +79,23 @@ button{
     <p> aku akan selalu ada disamping bb dalam situasi apapun, aku sayang bb soooo muchhh 4 everr </p>
     <p> not only sweet words ya bb , suatu saat kamu akan lihat perjuangan aku buat bb  bahagia </p>
 
- <button id="playBtn">Klik untuk memulai 💖</button>
-
 <audio id="bgMusic" loop>
   <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-document.getElementById("playBtn").addEventListener("click", function () {
-    const music = document.getElementById("bgMusic");
-    music.play().then(() => {
-        this.style.display = "none"; // tombol hilang setelah klik
-    }).catch(err => {
-        alert("Browser menolak memutar musik. Coba klik lagi.");
-    });
-});
+const music = document.getElementById("bgMusic");
+
+function startMusicOnce() {
+    music.play().catch(()=>{});
+    document.removeEventListener("click", startMusicOnce);
+    document.removeEventListener("touchstart", startMusicOnce);
+}
+
+document.addEventListener("click", startMusicOnce);
+document.addEventListener("touchstart", startMusicOnce);
 </script>
+
 
 const params=new URLSearchParams(window.location.search);
 const nama=params.get("nama")||"Sayangku";
@@ -103,6 +104,7 @@ document.getElementById("nama").textContent=nama;
 
 </body>
 </html>
+
 
 
 
