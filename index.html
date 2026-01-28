@@ -3,22 +3,63 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Untuk Kamu Felicia❤️</title>
+<title>Untuk Kamu Felicia ❤️</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
 body,html{height:100%;overflow:hidden;color:white;text-align:center;}
 
-video.bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
-.overlay{position:fixed;width:100%;height:100%;background:rgba(0,0,0,0.45);z-index:-1;}
+video.bg-video{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
 
-.card{position:relative;top:50%;transform:translateY(-50%);padding:30px;}
+.overlay{
+    position:fixed;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.45);
+    z-index:-1;
+    pointer-events:none;
+}
 
-.photo{margin:20px auto;width:200px;height:200px;border-radius:20px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.4);}
-.photo img{width:100%;height:100%;object-fit:cover;}
+.card{
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+    padding:30px;
+}
 
-.flower{position:fixed;top:-10px;font-size:24px;animation:fall linear infinite;}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg);}}
+.photo{
+    margin:20px auto;
+    width:200px;height:200px;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.photo img{
+    width:100%;height:100%;
+    object-fit:cover;
+}
+
+.flower{
+    position:fixed;
+    top:-10px;
+    font-size:24px;
+    animation:fall linear infinite;
+    pointer-events:none;
+}
+
+@keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
 
 <video class="bg-video" autoplay muted loop>
     <source src="video-romantis.mp4" type="video/mp4">
@@ -27,42 +68,50 @@ video.bg-video{position:fixed;top:0;left:0;width:100%;height:100%;object-fit:cov
 <div class="overlay"></div>
 
 <div class="card">
-    <h1>Untuk Kamu Feliciaku ></span>❤️</h1>
+    <h1 id="nama">Untuk Kamu Felicia ❤️</h1>
 
     <p>Sejak kamu hadir, hidupku jadi lebih berwarna sayangku.</p>
-    <p>terimakasih ya bb udah selalu ada buat aku, dan selalu lebih dewasa dari aku.</p>
-    <p> aku banyak belajar dari bb, bb orang yang suuuperrr hebatttt </p>
-    <p> semoga kita selamanya bersama yaa bb ,Aku akan selalu sayang bb💕</p>
-    <p> maaf ya bb kalau aku selalu ngerepotin dan bikin kamu pusing terusss </p>
-    <p> maaf ya kalau aku selalu bikin bb pusing dan ovt </p>
-    <p> tuhan pasti mempertemukan kita biar kita nikah bb YAKANNN !?!? </p>
-    <p> aamin ya bb sayaang as like what u say, kita akan lewatin ini semua sama sama </p>
-    <p> bb ku yang mandiri,semangat terus jalani hari kamu yg melelahkan ya </p>
-    <p> aku akan selalu ada disamping bb dalam situasi apapun, aku sayang bb soooo muchhh 4 everr </p>
-    <p> bukan cuman sweet words ya bb , suatu saat kamu akan lihat perjuangan aku buat bb  bahagia </p>
+    <p>Terimakasih ya bb udah selalu ada buat aku.</p>
+    <p>Aku banyak belajar dari bb, bb orang yang super hebat.</p>
+    <p>Semoga kita selamanya bersama yaa bb 💕</p>
+    <p>Maaf ya kalau aku sering bikin bb pusing.</p>
+    <p>Tuhan pasti mempertemukan kita biar kita nikah bb 😆</p>
+    <p>Aku akan selalu ada disamping bb dalam situasi apapun.</p>
+</div>
 
 <audio id="bgMusic" loop>
-  <source src="musik.mp3" type="audio/mpeg">
+    <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const music = document.getElementById("bgMusic");
-
-function startMusicOnce() {
-    music.play().catch(()=>{});
-    document.removeEventListener("click", startMusicOnce);
-    document.removeEventListener("touchstart", startMusicOnce);
+// 🌸 Bunga jatuh
+for(let i=0;i<25;i++){
+    let f=document.createElement("div");
+    f.className="flower";
+    f.innerHTML="🌸";
+    f.style.left=Math.random()*100+"vw";
+    f.style.animationDuration=(5+Math.random()*5)+"s";
+    f.style.fontSize=(15+Math.random()*20)+"px";
+    document.body.appendChild(f);
 }
 
-document.addEventListener("click", startMusicOnce);
-document.addEventListener("touchstart", startMusicOnce);
+// 💖 Nama dari link
+const params=new URLSearchParams(window.location.search);
+const nama=params.get("nama");
+if(nama){ document.getElementById("nama").textContent="Untuk Kamu "+nama+" ❤️"; }
+
+// 🎵 Musik otomatis saat layar disentuh
+const music=document.getElementById("bgMusic");
+
+function startMusic(){
+    music.play().catch(()=>{});
+    document.removeEventListener("click",startMusic);
+    document.removeEventListener("touchstart",startMusic);
+}
+
+document.addEventListener("click",startMusic);
+document.addEventListener("touchstart",startMusic);
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
