@@ -47,25 +47,22 @@ button{margin-top:20px;padding:10px 20px;border:none;border-radius:20px;backgrou
     <p> aku akan selalu ada disamping bb dalam situasi apapun, aku sayang bb soooo muchhh 4 everr </p>
     <p> not only sweet words ya bb , suatu saat kamu akan lihat perjuangan aku buat bb  bahagia </p>
 
-    <button onclick="playMusic()">Putar Musik Dulu bb 🎵</button>
-</div>
+ <button id="playBtn">Klik untuk memulai 💖</button>
 
 <audio id="bgMusic" loop>
-    <source src="musik.mp3" type="audio/mpeg">
+  <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function playMusic(){document.getElementById("bgMusic").play();}
-
-for(let i=0;i<25;i++){
-let f=document.createElement("div");
-f.className="flower";
-f.innerHTML="🌸";
-f.style.left=Math.random()*100+"vw";
-f.style.animationDuration=(5+Math.random()*5)+"s";
-f.style.fontSize=(15+Math.random()*20)+"px";
-document.body.appendChild(f);
-}
+document.getElementById("playBtn").addEventListener("click", function () {
+    const music = document.getElementById("bgMusic");
+    music.play().then(() => {
+        this.style.display = "none"; // tombol hilang setelah klik
+    }).catch(err => {
+        alert("Browser menolak memutar musik. Coba klik lagi.");
+    });
+});
+</script>
 
 const params=new URLSearchParams(window.location.search);
 const nama=params.get("nama")||"Sayangku";
@@ -74,4 +71,5 @@ document.getElementById("nama").textContent=nama;
 
 </body>
 </html>
+
 
